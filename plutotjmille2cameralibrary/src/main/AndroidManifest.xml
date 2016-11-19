@@ -1,0 +1,45 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.tim.plutotjmille2cameralibrary">
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+
+
+        <!-- Start the Service if applicable on boot -->
+        <receiver
+            android:enabled = "true"
+            android:exported="false"
+            android:name="com.example.tim.plutotjmille2cameralibrary.receiver.ServiceStarter"
+            android:permission= "android.permission.RECEIVE_BOOT_COMPLETED" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+
+
+
+        <!--
+            Because android:exported is set to "true",
+            the service is available to all lib projects.
+        -->
+        <service
+            android:name=".service.CameraService"
+            android:exported="true"/>
+
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Adding the permission -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+
+
+</manifest>
